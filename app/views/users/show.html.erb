@@ -19,7 +19,7 @@
       <tr>
         <td><%= user.email %></td>
        <!-- <td><%= user.password %></td> -->
-        <td><%= link_to 'Send Request', friends_path({:sender_id => current_user,:acceptor_id => user,:status => 'PENDING'}), :method => :post  %></td>
+        <td><%= link_to 'Send Request', friends_path(friend: {:sender_id => current_user,:acceptor_id => user,:status => 'PENDING'}), :method => :post  %></td>
                 <!-- <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>

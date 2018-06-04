@@ -5,12 +5,13 @@ Rails.application.routes.draw do
   get 'conversations/index'
   resources :posts
 	mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  resources :friends 
+  resources :friends
   devise_for :users, :controllers => { registrations:
 'registrations' }
   resources :users
   resources :conversations, only: [:index, :create] do
   resources :messages, only: [:index, :create]
+
 end
   root 'users#index'
 
