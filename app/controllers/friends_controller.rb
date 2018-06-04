@@ -6,7 +6,12 @@ class FriendsController < ApplicationController
 
   def index
     @friends = Friend.all
+    @find_friends = User.find_friends(current_user.id)
     @userfriends = User.friends(current_user.id)
+    @pending_friends = User.pending_friends(current_user.id)
+    @pending_friends_at_sender = User.pending_friends_at_sender(current_user.id)
+    @accepted_friends = User.accepted_friends(current_user.id)
+    @accepted_friends_at_sender = User.accepted_friends_at_sender(current_user.id)
   end
 
   # GET /friends/1

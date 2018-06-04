@@ -1,0 +1,9 @@
+ <tbody>
+    <% @userfriends.each do |friend| %>
+      <% if(Friend.find_by(:sender => friend.id).status == 'TRUE') %>
+      <tr>
+        <td><%= Friend.find_by(:sender => friend.id).id %><%= friend.email %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>

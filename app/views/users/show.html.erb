@@ -13,9 +13,9 @@
     </tr>
   </thead>
 <tbody>
-<% @users.each do |user| %>
 
-	<%if(user != current_user)%>
+<% @users.each do |user| %>
+	 <%if(user != current_user)%>
       <tr>
         <td><%= user.email %></td>
        <!-- <td><%= user.password %></td> -->

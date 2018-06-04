@@ -12,31 +12,47 @@
     </tr>
   </thead>
 
-  <tbody>
-    <% @userfriends.each do |friend| %>
-      <tr>
-        <td><%= friend.email %></td>
-        
-        <td>
-        <%= link_to 'Message', conversations_path() %>
-        </td> 
-        <!-- <td><%= link_to 'Edit', edit_friend_path(Friend.find_by(:sender => friend.id).id) %></td> -->
-       <!--  <td> -->
-      </tr>
-    <% end %>
-  </tbody>
 
   <tbody>
-    <% @userfriends.each do |friend| %>
-      <% if(Friend.find_by(:sender => friend.id).status == 'TRUE') %>
+    <% @pending_friends.each do |friend| %>
       <tr>
-        <td><%= Friend.find_by(:sender => friend.id).id %><%= friend.email %></td>
+        <td><%= friend.email %></td>
+        <td><%= link_to 'Accept Request' %></td>
+        <td><%= link_to 'Decline Request' %></td>
+        <td>
+        <%= link_to 'Message', conversations_path() %>
+        </td>
       </tr>
-    <% end %>
-    <% end %>
+      <% end %>
+       <% @pending_friends_at_sender.each do |friend| %>
+      <tr>
+        <td><%= friend.email %><%= "(Pending)" %></td>
+        <td>
+        <%= link_to 'Message', conversations_path() %>
+        </td>
+      </tr>
+      <% end %>
+      <% @accepted_friends.each do |friend| %>
+      <tr>
+        <td><%= friend.email %></td>
+        <td>
+        <%= link_to 'Message', conversations_path() %>
+        </td>
+      </tr>
+      <% end %>
+      <% @accepted_friends_at_sender.each do |friend| %>
+      <tr>
+        <td><%= friend.email %></td>
+        <td>
+        <%= link_to 'Message', conversations_path() %>
+        </td>
+      </tr>
+      <% end %>   
   </tbody>
+  <tbody>
 </table>
 
 <br>
 
 
+  

@@ -20,11 +20,31 @@ class User < ApplicationRecord
 
   
   has_many :posts, dependent: :destroy
+  
   scope :friends, ->(user_id) {
 
         User.find(user_id).senders + User.find(user_id).acceptors
     }
+  scope :pending_friends, ->(user_id) {
+        
+        User.find(user_id).senders.where("status='PENDING'")
+    }
+  scope :pending_friends_at_sender, ->(user_id) {
+        
+        User.find(user_id).acceptors.where("status='PENDING'")
+    }
+  scope :accepted_friends, ->(user_id) {
+        
+        User.find(user_id).acceptors.where("status='TRUE'")
+    }
+  scope :accepted_friends_at_sender, ->(user_id) {
+        
+        User.find(user_id).senders.where("status='TRUE'")
+    }
+  scope :find_friends, ->(user_id) {
+        User.find(user_id).acceptors.where("status='PENDING'") + User.find(user_id).acceptors.where("status='TRUE'")
 
+      } 
 
 
   # has_many :senders, class_name: 'Friend', foreign_key: 'sender_id'
