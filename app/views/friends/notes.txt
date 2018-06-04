@@ -1,0 +1,2 @@
+<!-- <td><%= link_to 'Accept Request', friends_path({:sender_id => friend,:acceptor_id => current_user,:status => 'TRUE'}), :method => :post  %></td>  -->
+<td><%= link_to 'Accept Request', Friend.update(Friend.find_by(:acceptor => current_user.id).id, :status => 'TRUE') %></td> 

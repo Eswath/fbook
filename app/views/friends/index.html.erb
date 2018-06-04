@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Friends</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Friends</th>
+     <!--  <th>Sender</th>
+      <th>Status</th> -->
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @userfriends.each do |friend| %>
+      <tr>
+        <td><%= friend.email %></td>
+        
+        <td>
+        <%= link_to 'Message', conversations_path() %>
+        </td> 
+        <!-- <td><%= link_to 'Edit', edit_friend_path(Friend.find_by(:sender => friend.id).id) %></td> -->
+       <!--  <td> -->
+      </tr>
+    <% end %>
+  </tbody>
+
+  <tbody>
+    <% @userfriends.each do |friend| %>
+      <% if(Friend.find_by(:sender => friend.id).status == 'TRUE') %>
+      <tr>
+        <td><%= Friend.find_by(:sender => friend.id).id %><%= friend.email %></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
