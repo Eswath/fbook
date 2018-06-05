@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   
 
+  resources :posts
   get 'messages/index'
   get 'conversations/index'
-  resources :posts
 	mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :friends
   devise_for :users, :controllers => { registrations:

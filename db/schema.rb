@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_04_120530) do
+ActiveRecord::Schema.define(version: 2018_06_05_111817) do
 
   create_table "conersations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2018_06_04_120530) do
     t.string "post"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -85,5 +85,4 @@ ActiveRecord::Schema.define(version: 2018_06_04_120530) do
 
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
-  add_foreign_key "posts", "users"
 end
