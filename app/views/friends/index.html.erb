@@ -22,11 +22,14 @@
         <%= friend.id %>
         <%= friend.id %>
         <%= Friend.find_by(:acceptor => current_user.id, :sender => friend.id).id %>
-        <td><%= link_to 'TRUE', friend_path(Friend.find_by(:acceptor => current_user.id, :sender => friend.id).id, friend: {status: "TRUE"}), method: :put %></td>
+        <td><%= link_to 'Accept Request', friend_path(Friend.find_by(:acceptor => current_user.id, :sender => friend.id).id, friend: {status: "TRUE"}), method: :put %></td>
 </td>
-        <td><%= link_to 'Decline Request' %></td>
+        <% @block_friend.each do |message| %>
+          <%= message.id %>
+        <% end %>
+        <td><%= link_to 'Decline Request', friend_path(Friend.find_by(:acceptor => current_user.id, :sender => friend.id).id, friend: {status: "DECLINED"}), method: :put %></td>
         <td>
-        <%= link_to 'Message', conversations_path() %>
+        <%= link_to 'Message', conversations_path %>
         </td>
       </tr>
       <% end %>
@@ -34,7 +37,7 @@
       <tr>
         <td><%= friend.email %><%= "(Pending)" %></td>
         <td>
-        <%= link_to 'Message', conversations_path() %>
+        <%= link_to 'Message', conversations_path %>
         </td>
       </tr>
       <% end %>
@@ -42,7 +45,7 @@
       <tr>
         <td><%= friend.email %></td>
         <td>
-        <%= link_to 'Message', conversations_path() %>
+        <%= link_to 'Message', conversations_path %>
         </td>
       </tr>
       <% end %>
@@ -50,7 +53,7 @@
       <tr>
         <td><%= friend.email %></td>
         <td>
-        <%= link_to 'Message', conversations_path() %>
+        <%= link_to 'Message', conversations_path %>
         </td>
       </tr>
       <% end %>   

@@ -43,8 +43,10 @@ class User < ApplicationRecord
     }
   scope :find_friends, ->(user_id) {
         User.find(user_id).acceptors.where("status='PENDING'") + User.find(user_id).acceptors.where("status='TRUE'")
-
-      } 
+    } 
+  scope :block_friends, ->(user_id) {
+        Conversation.find(user_id).sender + Conversation.find(user_id).receiver
+    } 
 
 
   # has_many :senders, class_name: 'Friend', foreign_key: 'sender_id'

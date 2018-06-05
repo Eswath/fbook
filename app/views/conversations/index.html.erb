@@ -3,7 +3,7 @@
 <ul>
   <% @conversations.each do |conversation| %>
     <li>
-      <%= link_to conversation.recipient(current_user).user_name, conversation_messages_path(conversation) %>
+      <%= link_to conversation.recipient(current_user).email, conversation_messages_path(conversation) %>
     </li>
   <% end %>
 </ul>
