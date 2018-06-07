@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.3.1'
+gem 'pry'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'devise'
 gem 'faye'

@@ -14,8 +14,9 @@
   </thead>
 <tbody>
 
+
 <% @users.each do |user| %>
-	 <%if(user != current_user)%>
+	 <%if((user != current_user) and (user.id.in? @findingfriends) == false)%>
       <tr>
         <td><%= user.email %></td>
        <!-- <td><%= user.password %></td> -->

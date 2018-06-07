@@ -8,9 +8,15 @@ Rails.application.routes.draw do
   resources :friends
   devise_for :users, :controllers => { registrations:
 'registrations' }
-  resources :users
+  resources :users do
+      resources :posts do
+        resources :likes
+      end
+    end
   resources :conversations, only: [:index, :create] do
   resources :messages, only: [:index, :create]
+
+
 
 end
   root 'users#index'

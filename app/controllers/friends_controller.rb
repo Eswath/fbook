@@ -6,7 +6,9 @@ class FriendsController < ApplicationController
 
   def index
     @friends = Friend.all
-    @find_friends = User.find_friends(current_user.id)
+    @getfriendsender = Conversation.get_friends_sender(current_user.id)
+    @getfriendreceiver = Conversation.get_friends_receiver(current_user.id)
+    @find_frienreceiverds = User.find_friends(current_user.id)
     @userfriends = User.friends(current_user.id)
     @pending_friends = User.pending_friends(current_user.id)
     @pending_friends_at_sender = User.pending_friends_at_sender(current_user.id)

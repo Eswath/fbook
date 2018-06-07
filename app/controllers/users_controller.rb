@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @findingfriends = []
         @users = User.all
         @find_friends = User.find_friends(current_user.id)
         @userfriends = User.friends(current_user.id)
@@ -18,6 +19,11 @@ class UsersController < ApplicationController
         @pending_friends_at_sender = User.pending_friends_at_sender(current_user.id)
         @accepted_friends = User.accepted_friends(current_user.id)
         @accepted_friends_at_sender = User.accepted_friends_at_sender(current_user.id)
+        @findingfriends += @accepted_friends.ids 
+        @findingfriends += @accepted_friends_at_sender.ids
+        @findingfriends += @pending_friends.ids
+        @findingfriends += @pending_friends_at_sender.ids
+        # binding.pry
   end
 
   # GET /users/new

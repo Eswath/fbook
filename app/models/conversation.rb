@@ -13,4 +13,10 @@ class Conversation < ApplicationRecord
     self.sender_id == current_user.id ? self.receiver : self.sender
   end
 
+  scope :get_friends_sender, ->(user_id) {
+    Conversation.find_by(:receiver => user_id)
+  } 
+  scope :get_friends_receiver, ->(user_id) {
+    Conversation.find_by(:receiver => user_id)
+  } 
 end

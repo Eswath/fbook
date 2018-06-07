@@ -1,4 +1,4 @@
-class User < ApplicationRecord
+ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,6 +7,7 @@ class User < ApplicationRecord
   # has_many :friends, class_name: "User", foreign_key: 'friend_id'
   # belongs_to :friend, class_name:"User"
 
+  has_many :likes, through: :posts
  
   has_many :sent_requests, foreign_key: :sender_id, class_name: 'Friend'
 
@@ -43,9 +44,6 @@ class User < ApplicationRecord
     }
   scope :find_friends, ->(user_id) {
         User.find(user_id).acceptors.where("status='PENDING'") + User.find(user_id).acceptors.where("status='TRUE'")
-    } 
-  scope :block_friends, ->(user_id) {
-        Conversation.find(user_id).sender + Conversation.find(user_id).receiver
     } 
 
 

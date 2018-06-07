@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_05_111817) do
+ActiveRecord::Schema.define(version: 2018_06_06_114054) do
 
   create_table "conersations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 2018_06_05_111817) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "user_ids"
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "body"
     t.bigint "conversation_id"
@@ -45,6 +55,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_111817) do
     t.string "post"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "like_used_id"
     t.integer "user_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -83,6 +94,8 @@ ActiveRecord::Schema.define(version: 2018_06_05_111817) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
 end
